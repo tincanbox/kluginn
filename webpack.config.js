@@ -7,7 +7,7 @@ module.exports = {
     new webpack.ProvidePlugin({
       $: 'jquery',
       jQuery: "jquery",
-      _: 'underscore'
+      _: 'underscore',
     })
   ],
   externals: {
@@ -15,7 +15,8 @@ module.exports = {
     lodash: '_',
     FM: 'FM',
     kintone: 'kintone',
-    Swal: 'Swal'
+    Swal: 'Swal',
+    underscore: '_'
   },
 
   // モジュールバンドルを行う起点となるファイルの指定
@@ -37,23 +38,21 @@ module.exports = {
   resolve: {
     extensions:['.ts','.js']
   },
-  devServer: {
-    // webpack-dev-serverの公開フォルダ
-    contentBase: path.join(__dirname,'dist')
-  },
   // モジュールに適用するルールの設定（ここではローダーの設定を行う事が多い）
   module: {
     rules: [
       {
         // 拡張子が.tsで終わるファイルに対して、TypeScriptコンパイラを適用する
-        test:/\.ts$/,loader:'ts-loader'
-      },
-      {
-        loader: 'babel-loader',
-        options: {
-          presets: [['@babel/preset-env', { modules: false }]]
-        }
+        test:/\.ts$/,
+        loader:'ts-loader',
+        exclude: /node_modules/
       }
+      //{
+      //  loader: 'babel-loader',
+      //  options: {
+      //    presets: [['@babel/preset-env', { modules: false }]]
+      //  }
+      //}
     ]
   }
 }

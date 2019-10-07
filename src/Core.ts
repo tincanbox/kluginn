@@ -2,10 +2,13 @@ import Config from './lib/Config';
 import API from './lib/API';
 import UI from './lib/UI';
 
+declare var kintone: any;
+declare var Swal: any;
+
 export default class Kluginn {
 
-  $:object;
-  $k:object;
+  $: object;
+  $k: {[key:string]: any};
   plugin_id:number;
   config:object;
   api:API;
