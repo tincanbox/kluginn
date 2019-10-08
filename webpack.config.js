@@ -1,33 +1,37 @@
 const webpack = require('webpack');
 const path = require('path');
 
+let vdir = path.resolve([__dirname, "src", "vendor"].join(path.sep));
+console.log(vdir);
+
 module.exports = {
   mode: 'development',
   plugins: [
     new webpack.ProvidePlugin({
-      $: 'jquery',
+      $: "jquery",
       jQuery: "jquery",
-      _: 'underscore',
+      underscore: vdir + "/underscore/underscore-min.js",
+      FM: vdir + "/fmjs/src/fm.js",
+      Swal: vdir + "/sweetalert2/sweetalert2.all.min.js"
     })
   ],
   externals: {
-    jquery: '$',
-    lodash: '_',
-    FM: 'FM',
-    kintone: 'kintone',
-    Swal: 'Swal',
-    underscore: '_'
+    kintone: 'kintone'
   },
 
   // モジュールバンドルを行う起点となるファイルの指定
   // 指定できる値としては、ファイル名の文字列や、それを並べた配列やオブジェクト
   // 下記はオブジェクトとして指定した例
   entry: {
-    bundle: './src/Core.ts'
+    kluginn: [
+      './src/Core.ts'
+    ]
   },
   output: {
     // モジュールバンドルを行った結果を出力する場所やファイル名の指定
     // "__dirname"はこのファイルが存在するディレクトリを表すnode.jsで定義済みの定数
+    library: 'Kluginn',
+    libraryTarget: 'umd',
     path: path.join(__dirname,'dist'),
     filename: '[name].js'  // [name]はentryで記述した名前(この例ではbundle）が入る
   },
