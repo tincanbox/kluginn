@@ -10,7 +10,8 @@ module.exports = {
     new webpack.ProvidePlugin({
       $: "jquery",
       jQuery: "jquery",
-      underscore: vdir + "/underscore/underscore-min.js",
+      underscore: "underscore",
+      papaparse: "papaparse",
       FM: vdir + "/fmjs/src/fm.js",
       Swal: vdir + "/sweetalert2/sweetalert2.all.min.js"
     })
@@ -23,9 +24,7 @@ module.exports = {
   // 指定できる値としては、ファイル名の文字列や、それを並べた配列やオブジェクト
   // 下記はオブジェクトとして指定した例
   entry: {
-    kluginn: [
-      './src/Core.ts'
-    ]
+    kluginn: './src/Core.ts'
   },
   output: {
     // モジュールバンドルを行った結果を出力する場所やファイル名の指定

@@ -10,6 +10,10 @@ export default class Kluginn {
     api: API;
     ui: UI;
     vendor: object;
+    service: object;
+    external: object;
     constructor();
+    init(opt?: {}): Promise<unknown>;
+    load(url: any): Promise<unknown>;
     dialog(): any;
 }

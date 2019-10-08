@@ -1,4 +1,5 @@
 import Submodule from '../interface/Submodule';
+
 declare var $: any;
 declare var _: any;
 
@@ -12,13 +13,12 @@ export default class __Config extends Submodule {
     this.selector = {
       "form_input_class": "plugin-data"
     }
-    this.$form = this.$('.js-submit-settings');
-    this.init();
   }
 
   /* Object
    */
   init(){
+    this.$form = this.$('.js-submit-settings');
     this.update_form();
   }
 
