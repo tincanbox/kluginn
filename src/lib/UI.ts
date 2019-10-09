@@ -13,20 +13,32 @@ export default class __UI extends Submodule {
 
   /*
    */
-  bind_action(ins){
+  bind_action(evm){
     var self = this;
     var atr = "data-action";
-    var sel = "[" + atr + "]";
-    self.core.$(sel).each(function(i, el){
-      var $el = self.core.$(el);
-      var evc = $el.attr(atr).split(":");
-      // click:do_something
-      var evn = evc[0];
-      var evh = "action_" + evc[1];
-      if(evh in ins){
-        self.core.$(document).on(evn, sel, self.core.$.proxy(ins[evh], self.core.$));
-      }
-    });
+    var sel = '[' + atr + ']';
+
+    /* {
+     *   click: {
+     *     "foo": function(){
+     *     }
+     *   },
+     *   change: {
+     *   }
+     * }
+     */
+    for(var ev in evm){
+      var evh = evm[ev];
+      self.core.$(document).on(ev, sel, self.core.$.proxy(function(e){
+        var $el = self.core.$(e.target);
+        var evc = $el.attr(atr);
+        if(evc in evh){
+          evh[evc].apply($el, [e]);
+        }else{
+        }
+      }, self.core));
+    }
+
   }
 
   /*
