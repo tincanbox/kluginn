@@ -4,6 +4,6 @@ export default class __UI extends Submodule {
         [s: string]: Function;
     };
     constructor(c: any, opt?: {});
-    bind_action(ins: any): void;
+    bind_action(evm: any): void;
     render(template_id: any, attr: any): any;
 }
