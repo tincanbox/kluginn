@@ -4,6 +4,7 @@ import UI from './lib/UI';
 
 import Service_GoogleAPI from './lib/service/GoogleAPI';
 
+declare var jQuery: any;
 declare var kintone: any;
 declare var Swal: any;
 declare var FM: any;

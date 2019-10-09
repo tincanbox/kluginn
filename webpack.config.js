@@ -1,20 +1,11 @@
 const webpack = require('webpack');
 const path = require('path');
 
-let vdir = path.resolve([__dirname, "src", "vendor"].join(path.sep));
-console.log(vdir);
-
 module.exports = {
   mode: 'development',
   plugins: [
-    new webpack.ProvidePlugin({
-      $: "jquery",
-      jQuery: "jquery",
-      underscore: "underscore",
-      papaparse: "papaparse",
-      FM: vdir + "/fmjs/src/fm.js",
-      Swal: vdir + "/sweetalert2/sweetalert2.all.min.js"
-    })
+    //new webpack.ProvidePlugin({
+    //})
   ],
   externals: {
     kintone: 'kintone'
