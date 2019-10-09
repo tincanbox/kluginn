@@ -8,6 +8,7 @@ declare var kintone: any;
 declare var Swal: any;
 declare var FM: any;
 declare var papaparse: any;
+declare var underscore: any;
 
 export default class Kluginn {
 
@@ -37,6 +38,7 @@ export default class Kluginn {
     // vendor libraries
     this.vendor = {};
     this.vendor["jquery"] = jQuery;
+    this.vendor["underscore"] = underscore;
     this.vendor["FM"] = FM;
     this.vendor["Swal"] = Swal;
     this.vendor["papaparse"] = papaparse;

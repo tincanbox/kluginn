@@ -33,7 +33,7 @@ export default class __UI extends Submodule {
   render(template_id, attr){
     var t_el = document.getElementById('template:' + template_id);
     if(t_el){
-      var comp = _.template(this.$(t_el).html());
+      var comp = this.core.vendor.underscore.template(this.$(t_el).html());
       return attr ? comp(attr) : comp;
     }else{
       return "TEMPLATE ERROR";
