@@ -16,7 +16,7 @@ export default class __UI extends Submodule {
   bind_action(ins){
     var self = this;
     var atr = "data-action";
-    var sel = "*[" + atr + "]";
+    var sel = "[" + atr + "]";
     self.core.$(sel).each(function(i, el){
       var $el = self.core.$(el);
       var evc = $el.attr(atr).split(":");
