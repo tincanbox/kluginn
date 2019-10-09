@@ -8,21 +8,22 @@ export default class __UI extends Submodule {
 
   constructor(c, opt = {}){
     super(c, opt)
-    this.init_action_handler();
   }
 
   /*
    */
-  init_action_handler(){
+  bind_action(ins){
     var self = this;
-    var cls = ".action-handler";
-    self.core.$(cls).each(function(i, el){
+    var atr = "data-action";
+    var sel = "*[" + atr + "]";
+    self.core.$(sel).each(function(i, el){
       var $el = self.core.$(el);
-      var evc = $el.attr("data-action").split(":");
+      var evc = $el.attr(atr).split(":");
+      // click:do_something
       var evn = evc[0];
-      var evh = evc[1];
-      if(evh in self.action){
-        self.core.$(document).on(evn, cls, self.core.$.proxy(self.action[evh], self.core.$));
+      var evh = "action_" + evc[1];
+      if(evh in ins){
+        self.core.$(document).on(evn, sel, self.core.$.proxy(ins[evh], self.core.$));
       }
     });
   }
