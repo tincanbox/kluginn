@@ -5,5 +5,5 @@ export default class __API extends Submodule {
     error_handler(r: {
         [key: string]: any;
     }): Promise<unknown>;
-    fetch_form_field_list(): any;
+    fetch(path: any, opt: any): any;
 }

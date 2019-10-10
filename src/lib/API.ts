@@ -32,14 +32,16 @@ export default class __API extends Submodule {
     });
   }
 
+  /*
+   */
+  fetch(path, opt){
+    return this.request('get', '/k/v1/' + path, opt);
+  }
+
 
   /*----------------------------------------------
    * Aliases
    *----------------------------------------------
    */
-
-  fetch_form_field_list(){
-    return this.request('get', '/k/v1/app/form/fields', {});
-  }
 
 }
