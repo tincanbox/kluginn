@@ -6,11 +6,11 @@ export default class __Config extends Submodule {
     };
     constructor(c: any, opt?: {});
     init(): void;
-    apply_app_config(): void;
     save(p: any): any;
-    fetch_config(): {
+    fetch(): {
         [key: string]: any;
     };
     update_form(): void;
+    update_input(o: any): void;
     retrieve_form_data(): {};
 }

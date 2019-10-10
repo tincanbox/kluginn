@@ -31,10 +31,8 @@ export default class __Config extends Submodule {
   save(p){
     var self = this;
     return new self.$k.Promise(function(res, rej){
-      var d = self.retrieve_form_data();
-      console.log("Saving form data", d);
       try{
-        self.$k.plugin.app.setConfig((p ? _.extend(d, p) : d), function() {
+        self.$k.plugin.app.setConfig(p, function() {
           self.update_form();
           res(self.config);
         });
@@ -49,13 +47,13 @@ export default class __Config extends Submodule {
    * ( void
    * ) -> Nothing
    */
-  fetch_config(){
+  fetch(){
     var self = this;
     self.config = self.core.$k.plugin.app.getConfig(self.core.plugin_id)
     return self.config;
   }
 
-  /* fetch_config で self.config の内容を更新したうえで、
+  /* fetch で self.config の内容を更新したうえで、
    * 呼ぶだけのショートカット
    *
    * ( void
@@ -63,12 +61,12 @@ export default class __Config extends Submodule {
    */
   update_form(){
     console.log("Updating form");
-    this.fetch_config();
+    this.fetch();
     this.update_input(this.config);
   }
 
   /* name[%form_input_class%] を持つ全要素に対して、
-   * val() で値の更新をかける。主に fetch_config とのセット用。
+   * val() で値の更新をかける。主に fetch とのセット用。
    *
    * ( void
    * ) -> Nothing
