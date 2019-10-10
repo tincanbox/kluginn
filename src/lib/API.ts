@@ -34,7 +34,7 @@ export default class __API extends Submodule {
 
   /*
    */
-  fetch(path, opt){
+  fetch(path, opt = {}){
     return this.request('get', '/k/v1/' + path, opt);
   }
 
