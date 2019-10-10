@@ -1,3 +1,3 @@
-[submodule "src/vendor/fmjs"]
-	path = src/vendor/fmjs
+[submodule "req/fmjs"]
+	path = req/fmjs
 	url = git@github.com:tincanbox/fmjs.git
