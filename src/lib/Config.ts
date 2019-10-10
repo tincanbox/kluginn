@@ -23,19 +23,6 @@ export default class __Config extends Submodule {
   }
 
 
-  /* name[%form_input_class%] を持つ全要素に対して、
-   * val() で値の更新をかける。主に fetch_config とのセット用。
-   *
-   * ( void
-   * ) -> Nothing
-   */
-  apply_app_config(){
-    var self = this;
-    for(var k in self.config){
-      self.core.$("." + self.selector.form_input_class + "[name=" + k + "]").val(self.config[k]);
-    }
-  }
-
   /*
    *
    * ( p:Object = Object for setConfig(p) param.
@@ -69,7 +56,7 @@ export default class __Config extends Submodule {
   }
 
   /* fetch_config で self.config の内容を更新したうえで、
-   * apply_app_config を呼ぶだけのショートカット
+   * 呼ぶだけのショートカット
    *
    * ( void
    * ) -> Nothing
@@ -77,8 +64,22 @@ export default class __Config extends Submodule {
   update_form(){
     console.log("Updating form");
     this.fetch_config();
-    this.apply_app_config();
+    this.update_input(this.config);
   }
+
+  /* name[%form_input_class%] を持つ全要素に対して、
+   * val() で値の更新をかける。主に fetch_config とのセット用。
+   *
+   * ( void
+   * ) -> Nothing
+   */
+  update_input(o){
+    var self = this;
+    for(var k in o){
+      self.core.$('[name="' + k + '"]').val(o[k]);
+    }
+  }
+
 
   /* form_input_class(default: plugin-data) に設定された要素を全取得し、
    * val() で取得した値をObjectにまとめて返す

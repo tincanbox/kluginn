@@ -17,6 +17,7 @@ export default class __UI extends Submodule {
     var self = this;
     var atr = "data-action";
     var sel = '[' + atr + ']';
+    console.log("applying", evm);
 
     /* {
      *   click: {
@@ -28,8 +29,10 @@ export default class __UI extends Submodule {
      * }
      */
     for(var ev in evm){
+      console.log("attaching event", ev);
       var evh = evm[ev];
       self.core.$(document).on(ev, sel, self.core.$.proxy(function(e){
+        console.log("called", e);
         var $el = self.core.$(e.target);
         var evc = $el.attr(atr);
         if(evc in evh){
