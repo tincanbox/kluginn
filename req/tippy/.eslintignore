@@ -1,9 +1,0 @@
-node_modules/
-coverage/
-dist/
-website/
-demo/
-test/
-build/
-rollup.config.js
-rollup.pre-build.js
