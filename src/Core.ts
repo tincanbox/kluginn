@@ -1,6 +1,7 @@
 import Config from './lib/Config';
 import API from './lib/API';
 import UI from './lib/UI';
+import Debug from './lib/Debug';
 
 import Service_GoogleAPI from './lib/service/GoogleAPI';
 
@@ -16,14 +17,16 @@ export default class Kluginn {
   $: object;
   $k: {[key:string]: any};
   plugin_id: number;
+  option: object;
   config: object;
   api: API;
   ui: UI;
+  debug: Debug;
   vendor: object;
   service: object;
   external: object;
 
-  constructor(){
+  constructor(option){
 
     if(!kintone){
       throw new Error("Kluginn only works with kintone !!");
@@ -32,9 +35,11 @@ export default class Kluginn {
     this.$ = jQuery;
     this.$k = kintone;
     this.plugin_id = this.$k.$PLUGIN_ID;
+    this.option = option;
     this.config = new Config(this);
     this.api = new API(this);
     this.ui = new UI(this);
+    this.debug = new Debug(this);
 
     // vendor libraries
     this.vendor = {};
