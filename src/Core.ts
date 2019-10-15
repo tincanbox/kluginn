@@ -95,9 +95,7 @@ export default class Kluginn {
       p = [a];
     }
     p = p.map(function(r){
-      r.customClass = FM.ob.merge({}, r.customClass || {
-        container: 'BSTRP' // bootstrap iso
-      });
+      r.customContainerClass = r.customContainerClass || 'BSTRP';
       return r;
     });
     return Swal.queue(p);
