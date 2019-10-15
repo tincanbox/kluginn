@@ -18,5 +18,5 @@ export default class Kluginn {
     constructor(option: any);
     init(opt?: {}): Promise<unknown>;
     load(url: any): Promise<unknown>;
-    dialog(): any;
+    dialog(a: any): any;
 }

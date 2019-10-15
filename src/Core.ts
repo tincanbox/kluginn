@@ -87,8 +87,20 @@ export default class Kluginn {
     })
   }
 
-  dialog(){
-    return Swal.queue.apply(Swal, [arguments]);
+  dialog(a){
+    var p;
+    if(a instanceof Array){
+      p = a;
+    }else{
+      p = [a];
+    }
+    p = p.map(function(r){
+      r.customClass = FM.ob.merge({}, r.customClass || {
+        container: 'BSTRP' // bootstrap iso
+      });
+      return r;
+    });
+    return Swal.queue(p);
   }
 
 }
