@@ -33,7 +33,7 @@ export default class __Config extends Submodule {
   save(p){
     var self = this;
     return new self.$k.Promise(function(res, rej){
-      var sv = FM.ob.clone(p);
+      var sv = FM.ob.merge({}, p);
       try{
         sv.json = JSON.stringify(sv.json || {});
         self.$k.plugin.app.setConfig(sv, function(r){
