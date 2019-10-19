@@ -3,6 +3,7 @@ import Submodule from '../interface/Submodule';
 declare var $: any;
 declare var _: any;
 declare var Papa: any;
+declare var FM: any;
 
 export default class _csv extends Submodule {
 
@@ -15,18 +16,16 @@ export default class _csv extends Submodule {
   init(){
   }
 
-  parse(content, clb = null){
+  parse(content, prm){
     return new Promise(function(rs, rj){
-      var p = Papa.parse(content, {
-        header: false,
-        step: clb,
+      var p = Papa.parse(content, FM.ob.merge({
         error: (err) => {
           rj(err);
         },
         complete: (result) => {
           rs(result);
         }
-      });
+      }, prm));
     });
   }
 
