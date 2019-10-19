@@ -45,6 +45,7 @@ export default class Kluginn {
     this.ui = new UI(this);
     this.debug = new Debug(this);
     this.file = new _file(this);
+    this.csv = new _csv(this);
 
     // vendor libraries
     this.vendor = {};
