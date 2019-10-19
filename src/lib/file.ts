@@ -36,7 +36,10 @@ export default class _file extends Submodule {
     });
   }
 
-  read(input, tp = "text"){
+  /* ( InputElement.files
+   * ) => Promise
+   */
+  read(ifl, tp = "text"){
     return new Promise(function(res, rej){
       var f = new FileReader();
       f.onload = function(e){
@@ -48,7 +51,7 @@ export default class _file extends Submodule {
       f.onerror = function(e){
         rej(e);
       }
-      f['readAs' + tp.charAt(0).toUpperCase() + tp.slice(1)](input.files[0]);
+      f['readAs' + tp.charAt(0).toUpperCase() + tp.slice(1)](ifl);
     });
   }
 
