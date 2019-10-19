@@ -2,6 +2,8 @@ import Submodule from '../interface/Submodule';
 
 declare var $: any;
 declare var _: any;
+declare var FM: any;
+
 
 export default class __Config extends Submodule {
 
@@ -31,11 +33,11 @@ export default class __Config extends Submodule {
   save(p){
     var self = this;
     return new self.$k.Promise(function(res, rej){
+      var sv = FM.ob.clone(p);
       try{
-        p.json = JSON.stringify(p.json || {});
-        self.$k.plugin.app.setConfig(p, function() {
-          self.update_form();
-          res(self.config);
+        sv.json = JSON.stringify(sv.json || {});
+        self.$k.plugin.app.setConfig(sv, function(r){
+          res(r);
         });
       }catch(e){
         rej(e);
@@ -43,19 +45,18 @@ export default class __Config extends Submodule {
     });
   }
 
-  /* getConfig() して self.config の内容を更新するだけ。
+  /* getConfig() して config の内容を更新するだけ。
    *
    * ( void
    * ) -> Nothing
    */
   fetch(){
-    var self = this;
-    self.config = self.core.$k.plugin.app.getConfig(self.core.plugin_id)
-    self.config.json = self.config.json ? JSON.parse(self.config.json) : {};
-    return self.config;
+    var c = this.core.$k.plugin.app.getConfig(this.core.plugin_id)
+    c.json = c.json ? JSON.parse(c.json) : {};
+    return c;
   }
 
-  /* fetch で self.config の内容を更新したうえで、
+  /* fetch で config の内容を更新したうえで、
    * 呼ぶだけのショートカット
    *
    * ( void
@@ -63,8 +64,7 @@ export default class __Config extends Submodule {
    */
   update_form(){
     console.log("Updating form");
-    this.fetch();
-    this.update_input(this.config);
+    this.update_input(this.fetch());
   }
 
   /* name[%form_input_class%] を持つ全要素に対して、
