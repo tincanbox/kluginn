@@ -32,6 +32,7 @@ export default class __Config extends Submodule {
     var self = this;
     return new self.$k.Promise(function(res, rej){
       try{
+        p.json = JSON.stringify(p.json || {});
         self.$k.plugin.app.setConfig(p, function() {
           self.update_form();
           res(self.config);
