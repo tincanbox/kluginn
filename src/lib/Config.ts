@@ -50,6 +50,7 @@ export default class __Config extends Submodule {
   fetch(){
     var self = this;
     self.config = self.core.$k.plugin.app.getConfig(self.core.plugin_id)
+    self.config.json = self.config.json ? JSON.parse(self.config.json) : {};
     return self.config;
   }
 
