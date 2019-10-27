@@ -57,6 +57,7 @@ export default class __Config extends Submodule {
     }catch(e){
       console.error("kluginn", e.message)
       console.log("kluginn", "Failed to fetch config. json is set as {}.");
+      console.log("kluginn", c);
       c.json = {};
     }
     return c;
