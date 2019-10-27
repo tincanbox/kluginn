@@ -35,6 +35,7 @@ export default class __Config extends Submodule {
     return new self.$k.Promise(function(res, rej){
       var sv = FM.ob.merge({}, p);
       try{
+        console.log("kluginn", "saving config", sv);
         sv.json = JSON.stringify(sv.json || {});
         self.$k.plugin.app.setConfig(sv, function(r){
           res(r);
@@ -54,9 +55,13 @@ export default class __Config extends Submodule {
     var c = this.core.$k.plugin.app.getConfig(this.core.plugin_id)
     console.log("kluginn", "getConfig", FM.ob.merge({}, c));
     try{
-      c.json = (c.json && typeof c.json == "string")
-        ? JSON.parse(c.json)
-        : {};
+      if(c.json && typeof c.json == "string"){
+        var ps = JSON.parse(c.json);
+        console.log("klugin", "parsed", ps);
+        c.json = ps;
+      }else{
+        c.json = {};
+      }
     }catch(e){
       console.error("kluginn", e.message)
       console.log("kluginn", "Failed to fetch config. json is set as {}.");
