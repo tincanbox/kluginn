@@ -52,9 +52,11 @@ export default class __Config extends Submodule {
    */
   fetch(){
     var c = this.core.$k.plugin.app.getConfig(this.core.plugin_id)
-    console.log("kluginn", FM.ob.merge({}, c));
+    console.log("kluginn", "getConfig", FM.ob.merge({}, c));
     try{
-      c.json = c.json ? JSON.parse(c.json) : {};
+      c.json = (c.json && typeof c.json == "string")
+        ? JSON.parse(c.json)
+        : {};
     }catch(e){
       console.error("kluginn", e.message)
       console.log("kluginn", "Failed to fetch config. json is set as {}.");
