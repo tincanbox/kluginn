@@ -57,7 +57,7 @@ export default class __Config extends Submodule {
         var ps = JSON.parse(c.json);
         c.json = ps;
       }else{
-        c.json = {};
+        // DONT RUN TWICE.
       }
     }catch(e){
       console.error("kluginn", e.message)
